@@ -8,7 +8,9 @@ app
     .get('/', (req, res) => {
         res.send('Server is now working');
     })
-    .get('/noteskeeper/get', Response.get(req, res))
+    .get('/noteskeeper/get', (req, res) => {
+        Response.get(res);
+    })
     .post('/noteskeeper/post', (req, res) => {
         res.send('Post request');
     })
