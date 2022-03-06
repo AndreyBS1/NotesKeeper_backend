@@ -1,4 +1,5 @@
 const express = require('express');
+const Notes = require('./db/models/notes');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -8,7 +9,8 @@ app
         res.send('Server is now working');
     })
     .get('/noteskeeper/get', (req, res) => {
-        res.send('Get request');
+        const allNotes = Notes.findAll();
+        res.send('Get request\n\n', + allNotes);
     })
     .post('/noteskeeper/post', (req, res) => {
         res.send('Post request');
