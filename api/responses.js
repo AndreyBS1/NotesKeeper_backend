@@ -1,4 +1,4 @@
-const Notes = require('./db/models/notes');
+const Notes = require('../db/models/notes');
 
 class Response {
     static async get(req, res) {
