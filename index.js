@@ -4,7 +4,7 @@ const Response = require('./api/responses');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-app.set('db', require('../db/models/index'));
+app.set('db', require('./db/models/index'));
 const NotesModel = app.get('db').notes;
 
 app
