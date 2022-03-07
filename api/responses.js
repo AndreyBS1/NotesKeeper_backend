@@ -3,7 +3,7 @@ const db = require('../db/models/index');
 // const NotesModel = require('../db/models/notes')(db.sequelize, DataTypes);
 
 class Response {
-    static async get() {
+    static get() {
         // const allNotes = await NotesModel.findAll();
         // return JSON.stringify(allNotes, null, 2);
         return typeof(db.models.notes)
