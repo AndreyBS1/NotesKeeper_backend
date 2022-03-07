@@ -1,8 +1,6 @@
-const db = require('../db/models/index');
-
 class Response {
-    static async get() {
-        const allNotes = await db.notes.findAll();
+    static async get(model) {
+        const allNotes = await model.findAll();
         return JSON.stringify(allNotes, null, 2);
     }
 }
