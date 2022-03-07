@@ -3,12 +3,9 @@ const { DataTypes } = require('sequelize');
 const NotesModel = require('../db/models/notes')(db.sequelize, DataTypes);
 
 class Response {
-    static async get(res) {
-        const allNotes = await NotesModel.findAll()
-        res.send(
-            'Get request\n\n' +
-            'Notes model (check):\n' + JSON.stringify(allNotes, null, 2)
-        );
+    static async get() {
+        const allNotes = await NotesModel.findAll();
+        return JSON.stringify(allNotes, null, 2);
     }
 }
 
