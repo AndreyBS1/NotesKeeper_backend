@@ -8,12 +8,8 @@ app.set('db', require('./db/models/index'));
 const NotesModel = app.get('db').notes;
 
 app
-    .get('/', async (req, res) => {
-        const allNotes = await Response.get(NotesModel);
-        res.send(
-            'Get request\n\n' +
-            'Notes (test): ' + allNotes
-        );
+    .get('/', (req, res) => {
+        res.send('Server is now working');
     })
     .get('/noteskeeper/get', async (req, res) => {
         const allNotes = await Response.get(NotesModel);
