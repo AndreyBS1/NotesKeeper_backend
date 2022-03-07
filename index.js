@@ -14,7 +14,7 @@ app
             'Get request\n\n' +
             'Notes (test): ' + allNotes
         );
-    }
+    })
     .get('/noteskeeper/get', async (req, res) => {
         const allNotes = await Response.get(NotesModel);
         res.send(
