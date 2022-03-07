@@ -6,7 +6,7 @@ class Response {
     static get() {
         // const allNotes = await NotesModel.findAll();
         // return JSON.stringify(allNotes, null, 2);
-        return typeof(db.models.notes)
+        return db
     }
 }
 
