@@ -1,11 +1,18 @@
 const express = require('express');
 const Response = require('./api/responses');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-app.set('db', require('./db/models/index'));
-const NotesModel = app.get('db').notes;
+// app.set('db', require('./db/models/index'));
+// const NotesModel = app.get('db').notes;
+
+const NotesModel = require('./db/models/index').notes;
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app
     .get('/', (req, res) => {
