@@ -21,10 +21,7 @@ app
     })
     .get('/noteskeeper/get', async (req, res) => {
         const allNotes = await Response.get(NotesModel);
-        res.send(
-            'Get request\n\n' +
-            'Notes (test): ' + allNotes
-        );
+        res.send(allNotes);
     })
     .post('/noteskeeper/post', (req, res) => {
         res.send('Post request');
