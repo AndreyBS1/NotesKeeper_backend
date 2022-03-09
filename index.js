@@ -51,7 +51,7 @@ app
         console.log("\n\nRequest body:\n");
         console.log(req.body);
 
-        // await Response.delete(NotesModel, req.body);
+        await Response.delete(NotesModel, req.body);
 
         console.log("\n\nSUCCESS\n\n");
         res.send('success');
