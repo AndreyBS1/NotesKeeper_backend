@@ -16,26 +16,36 @@ app
     .get('/', (req, res) => {
         res.send('Server is now working');
     })
+
     .get('/noteskeeper/get', async (req, res) => {
         const allNotes = await Response.get(NotesModel);
         res.send(allNotes);
     })
+
     .post('/noteskeeper/post', async (req, res) => {
-        console.log("\n\nRequest body:\n\n");
+        console.log("\n\nRequest body:\n");
         console.log(req.body);
 
         const result = await Response.post(NotesModel, req.body);
 
         if (result) {
-            res.send(JSON.stringify({ result: "success" }));
+            console.log("\n\nSUCCESS\n\n");
         } else {
             console.log("\n\nERROR\n\n");
         }
     })
-    .put('/noteskeeper/put', (req, res) => {
-        res.send('Put request');
+
+    .put('/noteskeeper/put', async (req, res) => {
+        console.log("\n\nRequest body:\n");
+        console.log(req.body);
+
+        await Response.put(NotesModel, req.body);
+
+        console.log("\n\nSUCCESS\n\n");
     })
+
     .delete('/noteskeeper/delete', (req, res) => {
         res.send('Delete request');
     })
+
     .listen(PORT);
