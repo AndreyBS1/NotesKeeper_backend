@@ -6,9 +6,6 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// app.set('db', require('./db/models/index'));
-// const NotesModel = app.get('db').notes;
-
 const NotesModel = require('./db/models/index').notes;
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,7 +21,9 @@ app
         res.send(allNotes);
     })
     .post('/noteskeeper/post', (req, res) => {
-        res.send('Post request');
+        console.log("\n\nRequest body:\n\n" + req.body);
+
+        res.send('Done');
     })
     .put('/noteskeeper/put', (req, res) => {
         res.send('Put request');
