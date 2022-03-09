@@ -21,7 +21,8 @@ app
         res.send(allNotes);
     })
     .post('/noteskeeper/post', (req, res) => {
-        console.log("\n\nRequest body:\n\n" + req.body);
+        console.log("\n\nRequest body:\n\n");
+        console.log(req.body);
 
         res.send('Done');
     })
