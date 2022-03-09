@@ -30,8 +30,10 @@ app
 
         if (result) {
             console.log("\n\nSUCCESS\n\n");
+            res.send('success');
         } else {
             console.log("\n\nERROR\n\n");
+            res.send('error');
         }
     })
 
@@ -42,6 +44,7 @@ app
         await Response.put(NotesModel, req.body);
 
         console.log("\n\nSUCCESS\n\n");
+        res.send('success');
     })
 
     .delete('/noteskeeper/delete', (req, res) => {
