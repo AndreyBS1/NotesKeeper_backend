@@ -20,11 +20,17 @@ app
         const allNotes = await Response.get(NotesModel);
         res.send(allNotes);
     })
-    .post('/noteskeeper/post', (req, res) => {
+    .post('/noteskeeper/post', async (req, res) => {
         console.log("\n\nRequest body:\n\n");
         console.log(req.body);
 
-        res.send('Done');
+        const result = await Response.post(NotesModel, req.body);
+
+        if (result) {
+            res.send(JSON.stringify({ result: "success" }));
+        } else {
+            console.log("\n\nERROR\n\n");
+        }
     })
     .put('/noteskeeper/put', (req, res) => {
         res.send('Put request');
