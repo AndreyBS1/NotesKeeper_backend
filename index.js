@@ -47,7 +47,7 @@ app
         res.send('success');
     })
 
-    .delete('/noteskeeper/delete', (req, res) => {
+    .delete('/noteskeeper/delete', async (req, res) => {
         console.log("\n\nRequest body:\n");
         console.log(req.body);
 
