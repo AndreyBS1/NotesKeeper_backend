@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       note_text: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
