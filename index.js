@@ -1,60 +1,65 @@
-const express = require('express');
-const Response = require('./api/responses');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const Response = require("./api/responses");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-const NotesModel = require('./db/models/index').notes;
+const NotesModel = require("./db/models/index").notes;
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 app
-    .get('/', (req, res) => {
-        res.send('Server is now working');
-    })
+  .get("/", (req, res) => {
+    res.send("Server is now working");
+  })
 
-    .get('/noteskeeper/get', async (req, res) => {
-        const allNotes = await Response.get(NotesModel);
-        res.send(allNotes);
-    })
+  .get("/noteskeeper/get/all", async (req, res) => {
+    const allNotes = await Response.getAll(NotesModel);
+    res.send(allNotes);
+  })
 
-    .post('/noteskeeper/post', async (req, res) => {
-        console.log("\n\nRequest body:\n");
-        console.log(req.body);
+  .get("/noteskeeper/get/one", async (req, res) => {
+    const oneNote = await Response.getOne(NotesModel, req.query.id);
+    res.send(oneNote);
+  })
 
-        const result = await Response.post(NotesModel, req.body);
+  .post("/noteskeeper/post", async (req, res) => {
+    console.log("\n\nRequest body:\n");
+    console.log(req.body);
 
-        if (result) {
-            console.log("\n\nSUCCESS\n\n");
-            res.send('success');
-        } else {
-            console.log("\n\nERROR\n\n");
-            res.send('error');
-        }
-    })
+    const result = await Response.post(NotesModel, req.body);
 
-    .put('/noteskeeper/put', async (req, res) => {
-        console.log("\n\nRequest body:\n");
-        console.log(req.body);
+    if (result) {
+      console.log("\n\nSUCCESS\n\n");
+      res.send("success");
+    } else {
+      console.log("\n\nERROR\n\n");
+      res.send("error");
+    }
+  })
 
-        await Response.put(NotesModel, req.body);
+  .put("/noteskeeper/put", async (req, res) => {
+    console.log("\n\nRequest body:\n");
+    console.log(req.body);
 
-        console.log("\n\nSUCCESS\n\n");
-        res.send('success');
-    })
+    await Response.put(NotesModel, req.body);
 
-    .delete('/noteskeeper/delete', async (req, res) => {
-        console.log("\n\nRequest body:\n");
-        console.log(req.body);
+    console.log("\n\nSUCCESS\n\n");
+    res.send("success");
+  })
 
-        await Response.delete(NotesModel, req.body);
+  .delete("/noteskeeper/delete", async (req, res) => {
+    console.log("\n\nRequest body:\n");
+    console.log(req.body);
 
-        console.log("\n\nSUCCESS\n\n");
-        res.send('success');
-    })
+    await Response.delete(NotesModel, req.body);
 
-    .listen(PORT);
+    console.log("\n\nSUCCESS\n\n");
+    res.send("success");
+  })
+
+  .listen(PORT);
